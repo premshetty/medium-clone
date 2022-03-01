@@ -2,7 +2,7 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import Header from '../components/Header'
 
-const Home: NextPage = () => {
+export default function Home() {
   return (
     <div className="max-w-7xl mx-auto">
       <Head>
@@ -24,4 +24,16 @@ const Home: NextPage = () => {
   )
 }
 
-export default Home
+export const getServerSideProps = async () => {
+  const query = `*[_type=="post"]{
+  _id,
+  title,
+  mainImage,
+  slug,
+  description,
+  author -> {
+  name,
+  image
+}
+}`
+}
